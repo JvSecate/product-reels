@@ -1,0 +1,141 @@
+/* =========================================================================
+   Product Reels – frontend fallback styles
+
+   Keep this file structural only. The theme owns the final visual design.
+   Low-specificity :where() selectors let theme selectors override these rules
+   regardless of enqueue order.
+   ========================================================================= */
+
+:where(.reels-section) {
+  position: relative;
+  width: 100%;
+}
+
+:where(.reels-wrap) {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+:where(.reels-grid) {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  flex: 1 1 auto;
+  outline: none;
+}
+
+:where(.reels-grid::-webkit-scrollbar) {
+  display: none;
+}
+
+:where(.reels-grid.is-dragging) {
+  cursor: grabbing;
+}
+
+:where(.reel-card) {
+  flex: 0 0 min(72vw, 210px);
+  scroll-snap-align: start;
+  overflow: hidden;
+  background: #fff;
+  cursor: pointer;
+}
+
+:where(.reel-video) {
+  position: relative;
+  aspect-ratio: 9 / 16;
+  overflow: hidden;
+  background: #000;
+}
+
+:where(.reel-video video),
+:where(.reel-video__preview) {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+:where(.reel-product) {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  color: inherit;
+  text-decoration: none;
+}
+
+:where(.reel-product img) {
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+:where(.reel-product-info) {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+:where(.reel-product-info strong),
+:where(.reel-product-info span) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+:where(.carousel-control.reels-control--prev),
+:where(.carousel-control.reels-control--next),
+:where(.reels-control) {
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(0, 0, 0, .18);
+  border-radius: 50%;
+  background: #fff;
+  color: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+:where(.reel-lightbox) {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(0, 0, 0, .78);
+}
+
+:where(.reel-lightbox.is-open) {
+  display: flex;
+}
+
+:where(.reel-lightbox__backdrop) {
+  position: absolute;
+  inset: 0;
+}
+
+:where(.reel-lightbox__stage) {
+  position: relative;
+  z-index: 1;
+  width: min(420px, 86vw);
+  max-height: 86vh;
+}
+
+:where(.reel-lightbox__stage video) {
+  width: 100%;
+  max-height: 86vh;
+  object-fit: contain;
+  display: block;
+  background: #000;
+}

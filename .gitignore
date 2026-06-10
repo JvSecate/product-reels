@@ -1,0 +1,62 @@
+# ============================================================
+# Product Reels – .gitignore
+# ============================================================
+
+# --- FFmpeg binary (downloaded at runtime, never committed) --
+/bin/
+# Also covers the uploads-directory location:
+ffmpeg
+ffmpeg.exe
+*.tar.xz
+*.tar.gz
+
+# --- WordPress / PHP ----------------------------------------
+*.log
+*.cache
+.DS_Store
+Thumbs.db
+
+# --- Node / build tools (if you add a build step later) -----
+node_modules/
+npm-debug.log*
+yarn-error.log
+dist/
+build/
+*.min.js.map
+*.min.css.map
+
+# --- Composer -----------------------------------------------
+/vendor/
+composer.lock
+
+# --- IDE / editor -------------------------------------------
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.history/
+
+# --- OS -----------------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# --- Test / dev artifacts -----------------------------------
+/tests/tmp/
+/.phpunit.cache/
+phpunit.xml
+.phpunit.result.cache
+
+# --- Environment / secrets ----------------------------------
+.env
+.env.*
+!.env.example
+
+# --- Release zips (build output, not source) ----------------
+*.zip

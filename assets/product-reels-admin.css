@@ -1,0 +1,552 @@
+/* =========================================================================
+   Product Reels – Admin styles
+   ========================================================================= */
+
+/* Shared box reset */
+.pr-metabox * { box-sizing: border-box; }
+
+.pr-metabox {
+  font-size: 13px;
+  color: #1d2327;
+}
+
+/* -------------------------------------------------------------------------
+ * Tabs
+ * ---------------------------------------------------------------------- */
+.pr-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid #ddd;
+  margin-bottom: 20px;
+}
+
+.pr-tab {
+  padding: 8px 18px;
+  border: none;
+  background: none;
+  font-size: 13px;
+  cursor: pointer;
+  color: #50575e;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  font-weight: 500;
+  transition: color .15s, border-color .15s;
+}
+
+.pr-tab:hover { color: #2271b1; }
+
+.pr-tab.is-active {
+  color: #2271b1;
+  border-bottom-color: #2271b1;
+}
+
+.pr-tab-panel { display: none; }
+.pr-tab-panel.is-active { display: block; }
+
+/* -------------------------------------------------------------------------
+ * Fields
+ * ---------------------------------------------------------------------- */
+.pr-field {
+  margin-bottom: 16px;
+}
+
+.pr-field label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #1d2327;
+}
+
+.pr-field input[type="url"],
+.pr-field input[type="text"],
+.pr-field input[type="number"] {
+  width: 100%;
+  max-width: 520px;
+}
+
+.pr-field--inline {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.pr-field--inline label {
+  margin-bottom: 0;
+  font-weight: normal;
+}
+
+.pr-field--inline input[type="number"] {
+  width: 80px !important;
+}
+
+.pr-field--checkbox label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+/* -------------------------------------------------------------------------
+ * Upload area
+ * ---------------------------------------------------------------------- */
+.pr-upload-area {
+  border: 2px dashed #c3c4c7;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  background: #f9f9f9;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  max-width: 340px;
+}
+
+.pr-upload-placeholder .dashicons {
+  font-size: 36px;
+  color: #c3c4c7;
+  width: 36px;
+  height: 36px;
+}
+
+.pr-upload-placeholder p {
+  margin: 0;
+  color: #8c8f94;
+  font-size: 13px;
+}
+
+.pr-upload-preview {
+  max-width: 100%;
+  max-height: 160px;
+  border-radius: 6px;
+}
+
+.pr-upload-filename {
+  margin: 0;
+  font-size: 12px;
+  color: #50575e;
+  word-break: break-all;
+}
+
+.pr-upload-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* -------------------------------------------------------------------------
+ * Sections inside metabox
+ * ---------------------------------------------------------------------- */
+.pr-section {
+  padding: 16px 0;
+  border-bottom: 1px solid #f0f0f1;
+}
+
+.pr-section:last-child { border-bottom: none; }
+
+.pr-section-title {
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #1d2327;
+}
+
+/* -------------------------------------------------------------------------
+ * Thumbnail row
+ * ---------------------------------------------------------------------- */
+.pr-thumb-row {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.pr-thumb-preview {
+  width: 100px;
+  height: 160px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #1d2327;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pr-thumb-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.pr-thumb-empty {
+  text-align: center;
+  color: #c3c4c7;
+}
+
+.pr-thumb-empty .dashicons {
+  font-size: 28px;
+  width: 28px;
+  height: 28px;
+  margin-bottom: 6px;
+}
+
+.pr-thumb-empty p {
+  margin: 0;
+  font-size: 11px;
+}
+
+.pr-thumb-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+/* -------------------------------------------------------------------------
+ * Preview clip
+ * ---------------------------------------------------------------------- */
+.pr-preview-options {
+  margin-top: 14px;
+  padding-left: 4px;
+}
+
+.pr-preview-current {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  background: #f6f7f7;
+  border-radius: 6px;
+  max-width: 320px;
+}
+
+.pr-preview-label {
+  font-size: 12px;
+  color: #50575e;
+}
+
+/* -------------------------------------------------------------------------
+ * Product preview (side metabox)
+ * ---------------------------------------------------------------------- */
+.pr-product-preview {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 12px;
+  padding: 10px;
+  background: #f6f7f7;
+  border-radius: 6px;
+}
+
+.pr-product-preview img {
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.pr-product-preview div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.pr-product-preview strong { font-size: 13px; }
+.pr-product-preview span   { font-size: 12px; color: #555; }
+
+/* -------------------------------------------------------------------------
+ * Notices inside metaboxes
+ * ---------------------------------------------------------------------- */
+.pr-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+
+.pr-notice--warning {
+  background: #fcf9e8;
+  border-left: 4px solid #dba617;
+  color: #6b4c11;
+}
+
+.pr-notice--info {
+  background: #f0f6fc;
+  border-left: 4px solid #72aee6;
+  color: #1d4b78;
+}
+
+.pr-notice .dashicons { flex-shrink: 0; margin-top: 1px; }
+
+/* -------------------------------------------------------------------------
+ * Tooltip
+ * ---------------------------------------------------------------------- */
+.pr-tooltip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #c3c4c7;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  cursor: help;
+  position: relative;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.pr-tooltip::after {
+  content: attr(data-tip);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 6px);
+  transform: translateX(-50%);
+  background: #1d2327;
+  color: #fff;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 1.4;
+  padding: 8px 12px;
+  border-radius: 6px;
+  white-space: normal;
+  width: 240px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.25);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .15s;
+  z-index: 100;
+}
+
+.pr-tooltip:hover::after { opacity: 1; }
+
+/* -------------------------------------------------------------------------
+ * Generate button
+ * ---------------------------------------------------------------------- */
+.pr-generate-btn .dashicons {
+  margin-right: 4px;
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+  vertical-align: text-bottom;
+}
+
+.pr-generate-btn.is-loading .dashicons {
+  animation: pr-spin .8s linear infinite;
+}
+
+@keyframes pr-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* -------------------------------------------------------------------------
+ * Spinner & feedback
+ * ---------------------------------------------------------------------- */
+.pr-spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid #ddd;
+  border-top-color: #2271b1;
+  border-radius: 50%;
+  animation: pr-spin .8s linear infinite;
+}
+
+.pr-feedback {
+  font-size: 12px;
+}
+
+.pr-feedback.is-success { color: #0a7227; }
+.pr-feedback.is-error   { color: #d63638; }
+
+/* -------------------------------------------------------------------------
+ * Badges & misc
+ * ---------------------------------------------------------------------- */
+.pr-badge {
+  display: inline-block;
+  padding: 1px 7px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.pr-badge--optional {
+  background: #f0f0f1;
+  color: #757575;
+}
+
+.pr-muted {
+  color: #8c8f94;
+  font-size: 13px;
+  margin: 4px 0;
+}
+
+.pr-btn-danger {
+  color: #d63638 !important;
+  border-color: #d63638 !important;
+}
+
+.pr-btn-danger:hover {
+  background: #d63638 !important;
+  color: #fff !important;
+}
+
+.pr-btn-link {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: #2271b1 !important;
+  padding: 0 !important;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* -------------------------------------------------------------------------
+ * Help metabox
+ * ---------------------------------------------------------------------- */
+.pr-help-steps {
+  margin: 0;
+  padding: 0 0 0 18px;
+  color: #50575e;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.pr-help-steps li { margin-bottom: 6px; }
+.pr-help-steps code { background: #f0f0f1; padding: 1px 5px; border-radius: 3px; font-size: 12px; }
+
+/* -------------------------------------------------------------------------
+ * Settings page
+ * ---------------------------------------------------------------------- */
+.pr-settings-wrap h1 { margin-bottom: 24px; }
+
+.pr-settings-card {
+  background: #fff;
+  border: 1px solid #c3c4c7;
+  border-radius: 4px;
+  padding: 24px 28px;
+  margin-bottom: 20px;
+  max-width: 860px;
+}
+
+.pr-settings-card h2 {
+  font-size: 16px;
+  margin: 0 0 6px;
+  padding: 0;
+  border: none;
+}
+
+.pr-settings-card h3 {
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0 0 10px;
+}
+
+.pr-settings-desc {
+  color: #50575e;
+  font-size: 13px;
+  margin: 0 0 14px;
+}
+
+.pr-settings-section {
+  padding: 18px 0;
+  border-top: 1px solid #f0f0f1;
+  margin-top: 4px;
+}
+
+.pr-settings-section:first-of-type { border-top: none; }
+
+/* Status banners */
+.pr-status-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  font-size: 13px;
+}
+
+.pr-status-banner--ok    { background: #edfaef; border-left: 4px solid #00a32a; }
+.pr-status-banner--error { background: #fcf0f1; border-left: 4px solid #d63638; }
+
+.pr-status-icon { font-size: 18px; line-height: 1; flex-shrink: 0; margin-top: 1px; }
+
+.pr-status-banner strong { display: block; margin-bottom: 2px; }
+.pr-status-meta { color: #50575e; font-size: 12px; }
+
+/* Downloader */
+.pr-downloader-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.pr-managed-ok {
+  color: #0a7227;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+/* Progress bar */
+.pr-progress-bar-wrap {
+  height: 8px;
+  background: #ddd;
+  border-radius: 999px;
+  overflow: hidden;
+  max-width: 420px;
+  margin-bottom: 8px;
+}
+
+.pr-progress-bar {
+  height: 100%;
+  background: #2271b1;
+  border-radius: 999px;
+  width: 0%;
+  transition: width .3s ease;
+}
+
+.pr-progress-bar.is-indeterminate {
+  width: 40% !important;
+  animation: pr-slide 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes pr-slide {
+  from { margin-left: 0; }
+  to   { margin-left: 60%; }
+}
+
+/* System info table */
+.pr-sysinfo-table { border-collapse: collapse; font-size: 13px; }
+.pr-sysinfo-table th,
+.pr-sysinfo-table td { padding: 6px 12px 6px 0; text-align: left; vertical-align: top; }
+.pr-sysinfo-table th { color: #50575e; font-weight: normal; width: 200px; }
+
+/* Code block */
+.pr-code-block {
+  background: #f0f0f1;
+  padding: 12px 16px;
+  border-radius: 4px;
+  display: inline-block;
+  font-size: 13px;
+  margin: 0 0 14px;
+}
