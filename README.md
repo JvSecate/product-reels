@@ -13,7 +13,6 @@ A WordPress plugin for displaying shoppable vertical video reels linked to WooCo
 - **Drag-to-scroll carousel** — desktop and touch friendly, with prev/next buttons
 - **WooCommerce integration** — link any product to show its image, name, and price below the reel
 - **One-click FFmpeg download** — downloads a static FFmpeg binary directly to your server from the plugin settings page; no SSH or manual installation required
-- **FFmpeg fallback** — if FFmpeg is unavailable the plugin still works with URL-only videos and manually uploaded thumbnails
 
 ---
 
@@ -40,7 +39,7 @@ A WordPress plugin for displaying shoppable vertical video reels linked to WooCo
 
 ## FFmpeg Setup
 
-FFmpeg is required for thumbnail extraction and preview clip generation. The plugin tries to find it automatically in common locations (`/usr/bin/ffmpeg`, `/usr/local/bin/ffmpeg`, etc.).
+FFmpeg is required for thumbnail extraction and preview clip generation. The plugin tries to find it automatically in common locations (`/usr/bin/ffmpeg`, `/usr/local/bin/ffmpeg`, etc.). If FFmpeg is unavailable the plugin still works with URL-only videos and manually uploaded thumbnails
 
 ### Option 1 — One-click download
 

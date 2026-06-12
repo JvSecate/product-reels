@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Product Reels
  * Description: Display shoppable vertical video reels linked to WooCommerce products — similar to Instagram/TikTok reels, but on your own store.
- * Version: 0.2.1
+ * Version: 0.3.0
  * Author: Jv Secate
  * Text Domain: product-reels
  * Domain Path: /languages
@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'PRODUCT_REELS_VERSION', '0.2.1' );
+define( 'PRODUCT_REELS_VERSION', '0.3.0' );
 define( 'PRODUCT_REELS_DIR', plugin_dir_path( __FILE__ ) );
 define( 'PRODUCT_REELS_URL', plugin_dir_url( __FILE__ ) );
 
