@@ -280,4 +280,87 @@
     });
   }
 
+  /* -----------------------------------------------------------------------
+   * Settings page: FFmpeg diagnostic / troubleshooting test
+   * -------------------------------------------------------------------- */
+  const $testBtn     = $('#pr_test_ffmpeg_btn');
+  const $testResults = $('#pr_test_results');
+
+  if ($testBtn.length) {
+    const idleLabel = $testBtn.text();
+
+    $testBtn.on('click', function () {
+      const nonce = $(this).data('nonce');
+      $testBtn.prop('disabled', true).text(i18n.runningTest || '⏳ Running test…');
+      $testResults.hide().empty();
+
+      $.post(ajaxurl, {
+        action: 'product_reels_test_ffmpeg',
+        nonce:  nonce,
+      })
+      .done(function (res) {
+        $testBtn.prop('disabled', false).text(idleLabel);
+        if (!res.success) {
+          $testResults.html(renderTestBanner(false, res.data?.message || i18n.error)).show();
+          return;
+        }
+        $testResults.html(renderTestReport(res.data)).show();
+      })
+      .fail(function () {
+        $testBtn.prop('disabled', false).text(idleLabel);
+        $testResults.html(renderTestBanner(false, i18n.serverError)).show();
+      });
+    });
+  }
+
+  function renderTestBanner(ok, msg) {
+    return '<div class="pr-status-banner ' + (ok ? 'pr-status-banner--ok' : 'pr-status-banner--error') + '">' +
+      '<span class="pr-status-icon">' + (ok ? '✔' : '✘') + '</span>' +
+      '<div><strong>' + escHtml(msg) + '</strong></div></div>';
+  }
+
+  function renderTestReport(d) {
+    const rows = [
+      ['exec() / shell_exec() enabled', d.exec_enabled && d.shell_exec_enabled],
+      ['FFmpeg binary found', !!d.ffmpeg_path],
+      ['FFmpeg runs (-version)', d.version_ok],
+      ['Test encode (libx264)', d.encode_ok],
+      ['Frame extraction', d.frame_ok],
+    ];
+
+    let html = '<table class="pr-sysinfo-table">';
+    rows.forEach(function (row) {
+      const label = row[0];
+      const ok = row[1];
+      html += '<tr><th>' + escHtml(label) + '</th><td>' +
+        (ok ? '<span style="color:#0a7227">✔ OK</span>' : '<span style="color:#d63638">✘ Failed</span>') +
+        '</td></tr>';
+    });
+    if (d.ffmpeg_path) {
+      html += '<tr><th>Path</th><td><code>' + escHtml(d.ffmpeg_path) + '</code> (' + escHtml(d.ffmpeg_source || '') + ')</td></tr>';
+    }
+    html += '</table>';
+
+    if (d.fatal) {
+      html += '<div class="pr-notice pr-notice--warning" style="margin-top:14px">' + escHtml(d.fatal) + '</div>';
+    }
+
+    const outputs = [
+      ['FFmpeg version output', d.version_output],
+      ['Test encode output', d.encode_output],
+      ['Frame extraction output', d.frame_output],
+    ].filter(function (pair) { return !!pair[1]; });
+
+    if (outputs.length) {
+      html += '<details style="margin-top:12px"><summary style="cursor:pointer;font-weight:600">Raw output (include this in support requests)</summary>';
+      outputs.forEach(function (pair) {
+        html += '<p class="pr-muted" style="margin:10px 0 2px">' + escHtml(pair[0]) + '</p>' +
+          '<pre class="pr-code-block" style="display:block;white-space:pre-wrap;word-break:break-all">' + escHtml(pair[1]) + '</pre>';
+      });
+      html += '</details>';
+    }
+
+    return html;
+  }
+
 }(jQuery));

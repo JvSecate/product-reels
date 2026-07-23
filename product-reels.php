@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Product Reels
  * Description: Display shoppable vertical video reels linked to WooCommerce products — similar to Instagram/TikTok reels, but on your own store.
- * Version: 0.3.0
+ * Version: 0.4.0
  * Author: Jv Secate
  * Text Domain: product-reels
  * Domain Path: /languages
@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'PRODUCT_REELS_VERSION', '0.3.0' );
+define( 'PRODUCT_REELS_VERSION', '0.4.0' );
 define( 'PRODUCT_REELS_DIR', plugin_dir_path( __FILE__ ) );
 define( 'PRODUCT_REELS_URL', plugin_dir_url( __FILE__ ) );
 
@@ -168,6 +168,7 @@ class Product_Reels_Plugin {
 		add_action( 'wp_ajax_product_reels_download_ffmpeg',      [ $this, 'ajax_download_ffmpeg' ] );
 		add_action( 'wp_ajax_product_reels_download_ffmpeg_do',   [ $this, 'ajax_download_ffmpeg_do' ] );
 		add_action( 'wp_ajax_product_reels_remove_ffmpeg',        [ $this, 'ajax_remove_ffmpeg' ] );
+		add_action( 'wp_ajax_product_reels_test_ffmpeg',          [ $this, 'ajax_test_ffmpeg' ] );
 	}
 
 
@@ -577,6 +578,14 @@ class Product_Reels_Plugin {
 			wp_send_json_error( [ 'message' => __( 'Video file not found. Please save the reel first.', 'product-reels' ) ] );
 		}
 
+		if ( ! is_readable( $video_path ) ) {
+			wp_send_json_error( [ 'message' => sprintf(
+				/* translators: %s: file path */
+				__( 'The video file exists but PHP cannot read it (permissions issue): %s', 'product-reels' ),
+				$video_path
+			) ] );
+		}
+
 		$upload_dir = wp_upload_dir();
 		$dest_dir   = trailingslashit( $upload_dir['path'] );
 		$ffmpeg     = product_reels_ffmpeg_path();
@@ -592,9 +601,12 @@ class Product_Reels_Plugin {
 				escapeshellarg( $video_path ),
 				escapeshellarg( $out_file )
 			);
-			shell_exec( $cmd );
+			$cmd_output = shell_exec( $cmd );
 			if ( ! file_exists( $out_file ) ) {
-				wp_send_json_error( [ 'message' => __( 'FFmpeg failed to generate the thumbnail.', 'product-reels' ) ] );
+				wp_send_json_error( [ 'message' => $this->format_ffmpeg_error(
+					__( 'FFmpeg failed to generate the thumbnail.', 'product-reels' ),
+					$cmd_output
+				) ] );
 			}
 			$att_id = $this->sideload_file( $out_file, $post_id, 'jpg' );
 			if ( is_wp_error( $att_id ) ) {
@@ -624,9 +636,12 @@ class Product_Reels_Plugin {
 				$duration,
 				escapeshellarg( $out_file )
 			);
-			shell_exec( $cmd );
+			$cmd_output = shell_exec( $cmd );
 			if ( ! file_exists( $out_file ) ) {
-				wp_send_json_error( [ 'message' => __( 'FFmpeg failed to generate the preview clip.', 'product-reels' ) ] );
+				wp_send_json_error( [ 'message' => $this->format_ffmpeg_error(
+					__( 'FFmpeg failed to generate the preview clip.', 'product-reels' ),
+					$cmd_output
+				) ] );
 			}
 			$att_id = $this->sideload_file( $out_file, $post_id, 'mp4' );
 			if ( is_wp_error( $att_id ) ) {
@@ -648,6 +663,30 @@ class Product_Reels_Plugin {
 	/* -----------------------------------------------------------------------
 	 * Helpers
 	 * -------------------------------------------------------------------- */
+
+	/**
+	 * Turn a failed shell_exec() call into an actionable admin-facing message.
+	 * The plugin previously discarded FFmpeg's stderr entirely, which is why
+	 * failures only ever showed a generic "FFmpeg failed to generate..." message.
+	 */
+	private function format_ffmpeg_error( string $summary, ?string $raw_output ): string {
+		if ( ! function_exists( 'shell_exec' ) ) {
+			return $summary . ' ' . __( 'shell_exec() is disabled on this server (see your host\'s disable_functions setting). FFmpeg cannot be invoked from PHP at all until this is enabled — this is a hosting restriction, not something the plugin can work around. Use the "Troubleshoot FFmpeg" tool on the Settings page to confirm.', 'product-reels' );
+		}
+
+		$tail = trim( (string) $raw_output );
+		if ( $tail === '' ) {
+			return $summary . ' ' . __( 'No output was returned at all. This usually means shell_exec() is being silently blocked (e.g. by open_basedir, a security module like suhosin/imunify, or the process being killed for exceeding a resource/time limit). Run the "Troubleshoot FFmpeg" tool on the Settings page for a clearer diagnosis.', 'product-reels' );
+		}
+
+		// Keep this bounded — FFmpeg logs can be long; the tail has the actual error.
+		$tail = mb_substr( $tail, -800 );
+		return $summary . ' ' . sprintf(
+			/* translators: %s: raw FFmpeg command output */
+			__( 'FFmpeg output: %s', 'product-reels' ),
+			$tail
+		);
+	}
 
 	/**
 	 * Download a remote video to a temp file and return the local path.
@@ -749,6 +788,7 @@ class Product_Reels_Plugin {
 				'removing'        => __( 'Removing…', 'product-reels' ),
 				'errorRemovingBinary' => __( 'Error removing binary.', 'product-reels' ),
 				'serverError'     => __( 'Server error.', 'product-reels' ),
+				'runningTest'     => __( '⏳ Running test…', 'product-reels' ),
 			],
 		] );
 	}
@@ -947,6 +987,19 @@ class Product_Reels_Plugin {
 						<?php submit_button( __( 'Save Path', 'product-reels' ) ); ?>
 					</form>
 				</div>
+
+				<!-- Troubleshooting / live test -->
+				<div class="pr-settings-section">
+					<h3><?php esc_html_e( 'Troubleshoot FFmpeg', 'product-reels' ); ?></h3>
+					<p class="pr-settings-desc">
+						<?php esc_html_e( 'Runs a live end-to-end test — checks that exec()/shell_exec() are enabled, that FFmpeg actually runs, and that it can encode a clip and extract a still frame — using a generated test pattern, so no reel or video is required.', 'product-reels' ); ?>
+					</p>
+					<button type="button" id="pr_test_ffmpeg_btn" class="button"
+						data-nonce="<?php echo esc_attr( wp_create_nonce( 'product_reels_admin' ) ); ?>">
+						🩺 <?php esc_html_e( 'Run Diagnostic Test', 'product-reels' ); ?>
+					</button>
+					<div id="pr_test_results" style="display:none; margin-top:16px"></div>
+				</div>
 			</div><!-- /.pr-settings-card -->
 
 			<!-- ================================================================
@@ -1116,6 +1169,89 @@ class Product_Reels_Plugin {
 			),
 			'path'    => $binary_dest,
 		] );
+	}
+
+	/* -----------------------------------------------------------------------
+	 * AJAX: Troubleshoot / test FFmpeg end-to-end (no reel or video required)
+	 * -------------------------------------------------------------------- */
+	public function ajax_test_ffmpeg(): void {
+		check_ajax_referer( 'product_reels_admin', 'nonce' );
+
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( [ 'message' => __( 'Permission denied.', 'product-reels' ) ] );
+		}
+
+		$result = [
+			'exec_enabled'       => function_exists( 'exec' ),
+			'shell_exec_enabled' => function_exists( 'shell_exec' ),
+			'ffmpeg_path'        => product_reels_ffmpeg_path(),
+			'ffmpeg_source'      => product_reels_ffmpeg_source(),
+			'version_ok'         => false,
+			'version_output'     => '',
+			'encode_ok'          => false,
+			'encode_output'      => '',
+			'frame_ok'           => false,
+			'frame_output'       => '',
+			'fatal'              => '',
+		];
+
+		if ( ! $result['exec_enabled'] || ! $result['shell_exec_enabled'] ) {
+			$result['fatal'] = __( 'exec() and/or shell_exec() are disabled by your hosting provider (check disable_functions in php.ini, or ask your host). FFmpeg cannot run under PHP at all until this changes — this is a server configuration issue, not a plugin bug.', 'product-reels' );
+			wp_send_json_success( $result );
+		}
+
+		if ( ! $result['ffmpeg_path'] ) {
+			$result['fatal'] = __( 'No usable FFmpeg binary was found (checked the plugin-managed copy, the manual path in Settings, common system locations, and `which ffmpeg`).', 'product-reels' );
+			wp_send_json_success( $result );
+		}
+
+		$ffmpeg = $result['ffmpeg_path'];
+
+		// Step 1: does the binary run at all?
+		$version_output = shell_exec( escapeshellarg( $ffmpeg ) . ' -version 2>&1' );
+		$result['version_output'] = trim( (string) $version_output );
+		$result['version_ok']     = (bool) preg_match( '/ffmpeg version/i', (string) $version_output );
+
+		if ( ! $result['version_ok'] ) {
+			$result['fatal'] = __( 'The binary did not run correctly. Common causes: it was downloaded for the wrong CPU architecture, it lost its executable permission, or required system libraries are missing on this server.', 'product-reels' );
+			wp_send_json_success( $result );
+		}
+
+		// Step 2 + 3: run the exact same operations reel generation uses, but against
+		// a tiny synthetic clip (FFmpeg's own test-pattern source) so no real video is needed.
+		$tmp_dir  = trailingslashit( get_temp_dir() );
+		$test_mp4 = $tmp_dir . 'pr-fftest-' . wp_generate_password( 8, false ) . '.mp4';
+		$test_jpg = $tmp_dir . 'pr-fftest-' . wp_generate_password( 8, false ) . '.jpg';
+
+		$encode_cmd = sprintf(
+			'%s -y -f lavfi -i testsrc=duration=1:size=64x64:rate=10 -c:v libx264 -preset ultrafast -pix_fmt yuv420p %s 2>&1',
+			escapeshellarg( $ffmpeg ),
+			escapeshellarg( $test_mp4 )
+		);
+		$result['encode_output'] = trim( (string) shell_exec( $encode_cmd ) );
+		$result['encode_ok']     = file_exists( $test_mp4 ) && filesize( $test_mp4 ) > 0;
+
+		if ( $result['encode_ok'] ) {
+			$frame_cmd = sprintf(
+				'%s -y -i %s -frames:v 1 -q:v 2 %s 2>&1',
+				escapeshellarg( $ffmpeg ),
+				escapeshellarg( $test_mp4 ),
+				escapeshellarg( $test_jpg )
+			);
+			$result['frame_output'] = trim( (string) shell_exec( $frame_cmd ) );
+			$result['frame_ok']     = file_exists( $test_jpg ) && filesize( $test_jpg ) > 0;
+		}
+
+		@unlink( $test_mp4 );
+		@unlink( $test_jpg );
+
+		if ( ! $result['encode_ok'] ) {
+			$result['fatal'] = __( 'FFmpeg runs but could not encode a test clip with libx264. Your build may be missing H.264 support, or the temp/output directory may not be writable.', 'product-reels' );
+		} elseif ( ! $result['frame_ok'] ) {
+			$result['fatal'] = __( 'FFmpeg can encode video but failed to extract a still frame — please include the raw output below in any support request.', 'product-reels' );
+		}
+
+		wp_send_json_success( $result );
 	}
 
 	/* -----------------------------------------------------------------------
