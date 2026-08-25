@@ -121,10 +121,12 @@
     lightbox.setAttribute('role', 'dialog');
     lightbox.setAttribute('aria-modal', 'true');
     lightbox.setAttribute('aria-hidden', 'true');
-    lightbox.innerHTML = '<div class="reel-lightbox__backdrop" aria-hidden="true"></div><div class="reel-lightbox__stage" aria-label="Reel em destaque"></div>';
+    const featuredReelLabel = window.ProductReelsFrontend?.featuredReelLabel || 'Featured reel';
+    lightbox.innerHTML = '<div class="reel-lightbox__backdrop" aria-hidden="true"></div><div class="reel-lightbox__stage"></div>';
     document.body.appendChild(lightbox);
 
     const stage = lightbox.querySelector('.reel-lightbox__stage');
+    stage.setAttribute('aria-label', featuredReelLabel);
     let activeVideo = null;
 
     const closeLightbox = () => {

@@ -750,6 +750,13 @@ class Product_Reels_Plugin {
 	public function enqueue_frontend_assets(): void {
 		wp_enqueue_style( 'product-reels', PRODUCT_REELS_URL . 'assets/product-reels.css', [], PRODUCT_REELS_VERSION );
 		wp_enqueue_script( 'product-reels', PRODUCT_REELS_URL . 'assets/product-reels.js', [], PRODUCT_REELS_VERSION, true );
+		wp_localize_script(
+			'product-reels',
+			'ProductReelsFrontend',
+			[
+				'featuredReelLabel' => __( 'Featured reel', 'product-reels' ),
+			]
+		);
 	}
 
 	public function enqueue_admin_assets( string $hook ): void {

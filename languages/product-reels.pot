@@ -1,0 +1,606 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Product Reels 0.4.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-08-24 00:00-0300\n"
+"PO-Revision-Date: 2026-08-24 00:00-0300\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: scripts/generate-plugin-translations.py\n"
+
+#: product-reels/product-reels.php:397
+msgid "A short, muted, compressed version of the video that autoplays in the reel card. The full video is only loaded when the user clicks."
+msgstr ""
+
+#: product-reels/product-reels.php:925
+msgid "A static FFmpeg build for %1$s will be downloaded from %2$s and stored in your uploads folder. The download is ~40 MB and may take a minute."
+msgstr ""
+
+#: product-reels/product-reels.php:1046
+msgid "Active"
+msgstr ""
+
+#: product-reels/product-reels.php:486
+msgid "Add a video — either paste a direct URL or upload a file."
+msgstr ""
+
+#: product-reels/product-reels.php:195
+msgid "Add New Product Reel"
+msgstr ""
+
+#: product-reels/product-reels.php:194
+msgid "Add New Reel"
+msgstr ""
+
+#: product-reels/product-reels.php:905
+msgid "Automatic download is not available for this server architecture (%s). Use Option 2 below."
+msgstr ""
+
+#: product-reels/product-reels.php:1067
+msgid "Automatic download is not supported for this server architecture."
+msgstr ""
+
+#: product-reels/product-reels.php:1037
+msgid "Bin directory"
+msgstr ""
+
+#: product-reels/product-reels.php:935
+msgid "Binary will be saved to: %s"
+msgstr ""
+
+#: product-reels/product-reels.php:1017
+msgid "Call the following function anywhere in your theme template or page builder PHP block to render the reels carousel:"
+msgstr ""
+
+#: product-reels/product-reels.php:308 product-reels/product-reels.php:781
+msgid "Change Video"
+msgstr ""
+
+#: product-reels/product-reels.php:409
+msgid "Clip duration (seconds)"
+msgstr ""
+
+#: product-reels/product-reels.php:789
+msgid "Connecting to johnvansickle.com and downloading static FFmpeg binary (~40 MB)…"
+msgstr ""
+
+#: product-reels/product-reels.php:723
+msgid "Could not copy generated file to uploads directory."
+msgstr ""
+
+#: product-reels/product-reels.php:421 product-reels/product-reels.php:785
+msgid "Current preview clip"
+msgstr ""
+
+#: product-reels/product-reels.php:278
+msgid "Direct link to an .mp4, .webm or .mov file. Hosted video services (YouTube, Vimeo) are not supported — use a direct file URL."
+msgstr ""
+
+#: product-reels/product-reels.php:1080
+msgid "Directory is not writable: %s"
+msgstr ""
+
+#: product-reels/product-reels.php
+msgid "Display shoppable vertical video reels linked to WooCommerce products — similar to Instagram/TikTok reels, but on your own store."
+msgstr ""
+
+#: product-reels/product-reels.php:494
+msgid "Display the reels on any page by calling %s in your theme."
+msgstr ""
+
+#: product-reels/product-reels.php:1131
+msgid "Download failed (HTTP %d)."
+msgstr ""
+
+#: product-reels/product-reels.php:944
+msgid "Download FFmpeg to this server"
+msgstr ""
+
+#: product-reels/product-reels.php:878
+msgid "Downloaded by this plugin"
+msgstr ""
+
+#: product-reels/product-reels.php:1135
+msgid "Downloaded file appears corrupt or too small."
+msgstr ""
+
+#: product-reels/product-reels.php:196
+msgid "Edit Product Reel"
+msgstr ""
+
+#: product-reels/product-reels.php:403
+msgid "Enable preview clip for this reel"
+msgstr ""
+
+#: product-reels/product-reels.php:796
+msgid "Error removing binary."
+msgstr ""
+
+#: product-reels/product-reels.php:786
+msgid "Error."
+msgstr ""
+
+#: product-reels/product-reels.php:1206
+msgid "exec() and/or shell_exec() are disabled by your hosting provider (check disable_functions in php.ini, or ask your host). FFmpeg cannot run under PHP at all until this changes — this is a server configuration issue, not a plugin bug."
+msgstr ""
+
+#: product-reels/product-reels.php:1035
+msgid "exec() available"
+msgstr ""
+
+#: product-reels/product-reels.php:367
+msgid "Extract frame at (seconds)"
+msgstr ""
+
+#: product-reels/product-reels.php:1155
+msgid "Extraction failed. The tar command may not support .xz on this server."
+msgstr ""
+
+#: product-reels/product-reels.php:757
+msgid "Featured reel"
+msgstr ""
+
+#: product-reels/product-reels.php:862
+msgid "FFmpeg"
+msgstr ""
+
+#: product-reels/product-reels.php:982
+msgid "FFmpeg Binary Path"
+msgstr ""
+
+#: product-reels/product-reels.php:1258
+msgid "FFmpeg can encode video but failed to extract a still frame — please include the raw output below in any support request."
+msgstr ""
+
+#: product-reels/product-reels.php:642
+msgid "FFmpeg failed to generate the preview clip."
+msgstr ""
+
+#: product-reels/product-reels.php:607
+msgid "FFmpeg failed to generate the thumbnail."
+msgstr ""
+
+#: product-reels/product-reels.php:1174
+msgid "FFmpeg installed successfully! %s"
+msgstr ""
+
+#: product-reels/product-reels.php:872
+msgid "FFmpeg is active"
+msgstr ""
+
+#: product-reels/product-reels.php:564
+msgid "FFmpeg is not available on this server."
+msgstr ""
+
+#: product-reels/product-reels.php:864
+msgid "FFmpeg is required for thumbnail extraction and preview clip generation. It is never bundled in the plugin zip — instead you can download a static binary directly to your server with one click, or point to an existing installation."
+msgstr ""
+
+#: product-reels/product-reels.php:891
+msgid "FFmpeg not found"
+msgstr ""
+
+#: product-reels/product-reels.php:686
+msgid "FFmpeg output: %s"
+msgstr ""
+
+#: product-reels/product-reels.php:1256
+msgid "FFmpeg runs but could not encode a test clip with libx264. Your build may be missing H.264 support, or the temp/output directory may not be writable."
+msgstr ""
+
+#: product-reels/product-reels.php:1031
+msgid "FFmpeg status"
+msgstr ""
+
+#: product-reels/product-reels.php:340
+msgid "FFmpeg was not found on this server. Thumbnail and preview clip generation are unavailable. You can set a custom FFmpeg path in"
+msgstr ""
+
+#: product-reels/product-reels.php:487
+msgid "Generate a thumbnail so visitors never see a black screen."
+msgstr ""
+
+#: product-reels/product-reels.php:374
+msgid "Generate from video"
+msgstr ""
+
+#: product-reels/product-reels.php:426
+msgid "Generate preview clip"
+msgstr ""
+
+#: product-reels/product-reels.php:777
+msgid "Generating…"
+msgstr ""
+
+#: product-reels/product-reels.php:485
+msgid "Give the reel a title (used in the admin only)."
+msgstr ""
+
+#: product-reels/product-reels.php:410
+msgid "How many seconds from the start of the video to include in the preview clip. 3–8 seconds works best."
+msgstr ""
+
+#: product-reels/product-reels.php:242
+msgid "How to use"
+msgstr ""
+
+#: product-reels/product-reels.php:975
+msgid "If FFmpeg is already installed on the server (e.g. via apt/yum), enter the full path to the binary here."
+msgstr ""
+
+#: product-reels/product-reels.php:560
+msgid "Invalid request."
+msgstr ""
+
+#: product-reels/product-reels.php:989
+msgid "Leave blank to auto-detect. The managed binary (Option 1) always takes priority over this field."
+msgstr ""
+
+#: product-reels/product-reels.php:489
+msgid "Link a WooCommerce product to show a buy button below the reel."
+msgstr ""
+
+#: product-reels/product-reels.php:234
+msgid "Linked Product"
+msgstr ""
+
+#: product-reels/product-reels.php:1284
+msgid "Managed FFmpeg binary removed."
+msgstr ""
+
+#: product-reels/product-reels.php:879
+msgid "Manual path (settings below)"
+msgstr ""
+
+#: product-reels/product-reels.php:197
+msgid "New Product Reel"
+msgstr ""
+
+#: product-reels/product-reels.php:1362
+msgid "Next reels"
+msgstr ""
+
+#: product-reels/product-reels.php:1036
+msgid "No (disabled by host)"
+msgstr ""
+
+#: product-reels/product-reels.php:679
+msgid "No output was returned at all. This usually means shell_exec() is being silently blocked (e.g. by open_basedir, a security module like suhosin/imunify, or the process being killed for exceeding a resource/time limit). Run the \"Troubleshoot FFmpeg\" tool on the Settings page for a clearer diagnosis."
+msgstr ""
+
+#: product-reels/product-reels.php:201
+msgid "No reels found in trash."
+msgstr ""
+
+#: product-reels/product-reels.php:200
+msgid "No reels found."
+msgstr ""
+
+#: product-reels/product-reels.php:358 product-reels/product-reels.php:783
+msgid "No thumbnail"
+msgstr ""
+
+#: product-reels/product-reels.php:1211
+msgid "No usable FFmpeg binary was found (checked the plugin-managed copy, the manual path in Settings, common system locations, and `which ffmpeg`)."
+msgstr ""
+
+#: product-reels/product-reels.php:302 product-reels/product-reels.php:780
+msgid "No video selected"
+msgstr ""
+
+#: product-reels/product-reels.php:1047
+msgid "Not active"
+msgstr ""
+
+#: product-reels/product-reels.php:1034
+msgid "Not found"
+msgstr ""
+
+#: product-reels/product-reels.php:1042
+msgid "Not writable"
+msgstr ""
+
+#: product-reels/product-reels.php:899
+msgid "Option 1 — Download static binary (recommended for VPS)"
+msgstr ""
+
+#: product-reels/product-reels.php:973
+msgid "Option 2 — Manual path"
+msgstr ""
+
+#: product-reels/product-reels.php:396
+msgid "Optional"
+msgstr ""
+
+#: product-reels/product-reels.php:488
+msgid "Optionally generate a short preview clip to autoplay on the card."
+msgstr ""
+
+#: product-reels/product-reels.php:1062 product-reels/product-reels.php:1097 product-reels/product-reels.php:1188 product-reels/product-reels.php:1271 product-reels/product-reels.php:553
+msgid "Permission denied."
+msgstr ""
+
+#: product-reels/product-reels.php:1029
+msgid "PHP version"
+msgstr ""
+
+#: product-reels/product-reels.php:779
+msgid "Please add a video URL or upload a video first, then save."
+msgstr ""
+
+#: product-reels/product-reels.php:778
+msgid "Please save the post before generating assets."
+msgstr ""
+
+#: product-reels/product-reels.php:501
+msgid "Plugin Settings"
+msgstr ""
+
+#: product-reels/product-reels.php:1028
+msgid "Plugin version"
+msgstr ""
+
+#: product-reels/product-reels.php:948
+msgid "Plugin-managed binary installed."
+msgstr ""
+
+#: product-reels/product-reels.php:395
+msgid "Preview Clip"
+msgstr ""
+
+#: product-reels/product-reels.php:226
+msgid "Preview Clip & Thumbnail"
+msgstr ""
+
+#: product-reels/product-reels.php:658
+msgid "Preview clip generated (%ds)!"
+msgstr ""
+
+#: product-reels/product-reels.php:433
+msgid "Preview clip generation requires FFmpeg. See the warning above."
+msgstr ""
+
+#: product-reels/product-reels.php:1304
+msgid "Previous reels"
+msgstr ""
+
+#: product-reels/product-reels.php:471
+msgid "Product not found. Double-check the ID."
+msgstr ""
+
+#: product-reels/product-reels.php:193
+msgid "Product Reel"
+msgstr ""
+
+#: product-reels/product-reels.php product-reels/product-reels.php:192 product-reels/product-reels.php:202
+msgid "Product Reels"
+msgstr ""
+
+#: product-reels/product-reels.php:341 product-reels/product-reels.php:828 product-reels/product-reels.php:856
+msgid "Product Reels Settings"
+msgstr ""
+
+#: product-reels/product-reels.php:952
+msgid "Re-download / update"
+msgstr ""
+
+#: product-reels/product-reels.php:1019
+msgid "Reels are ordered by Menu Order (drag to reorder in the admin list) then by publish date."
+msgstr ""
+
+#: product-reels/product-reels.php:790
+msgid "Reloading…"
+msgstr ""
+
+#: product-reels/product-reels.php:312
+msgid "Remove"
+msgstr ""
+
+#: product-reels/product-reels.php:956
+msgid "Remove managed binary"
+msgstr ""
+
+#: product-reels/product-reels.php:794
+msgid "Remove the plugin-managed FFmpeg binary? You can re-download it at any time."
+msgstr ""
+
+#: product-reels/product-reels.php:383 product-reels/product-reels.php:784
+msgid "Remove thumbnail"
+msgstr ""
+
+#: product-reels/product-reels.php:795
+msgid "Removing…"
+msgstr ""
+
+#: product-reels/product-reels.php:1006
+msgid "Run Diagnostic Test"
+msgstr ""
+
+#: product-reels/product-reels.php:1002
+msgid "Runs a live end-to-end test — checks that exec()/shell_exec() are enabled, that FFmpeg actually runs, and that it can encode a clip and extract a still frame — using a generated test pattern, so no reel or video is required."
+msgstr ""
+
+#: product-reels/product-reels.php:994
+msgid "Save Path"
+msgstr ""
+
+#: product-reels/product-reels.php:199
+msgid "Search Reels"
+msgstr ""
+
+#: product-reels/product-reels.php:308 product-reels/product-reels.php:782
+msgid "Select / Upload Video"
+msgstr ""
+
+#: product-reels/product-reels.php:775
+msgid "Select Thumbnail Image"
+msgstr ""
+
+#: product-reels/product-reels.php:773
+msgid "Select Video"
+msgstr ""
+
+#: product-reels/product-reels.php:793
+msgid "Server error (HTTP %d). The download may have timed out — try increasing PHP max_execution_time."
+msgstr ""
+
+#: product-reels/product-reels.php:797
+msgid "Server error."
+msgstr ""
+
+#: product-reels/product-reels.php:787
+msgid "Server error. Please try again."
+msgstr ""
+
+#: product-reels/product-reels.php:1030
+msgid "Server OS"
+msgstr ""
+
+#: product-reels/product-reels.php:816
+msgid "Set a custom FFmpeg path →"
+msgstr ""
+
+#: product-reels/product-reels.php:829
+msgid "Settings"
+msgstr ""
+
+#: product-reels/product-reels.php:674
+msgid "shell_exec() is disabled on this server (see your host's disable_functions setting). FFmpeg cannot be invoked from PHP at all until this is enabled — this is a hosting restriction, not something the plugin can work around. Use the \"Troubleshoot FFmpeg\" tool on the Settings page to confirm."
+msgstr ""
+
+#: product-reels/product-reels.php:1026
+msgid "System Info"
+msgstr ""
+
+#: product-reels/product-reels.php:880
+msgid "System installation"
+msgstr ""
+
+#: product-reels/product-reels.php:1223
+msgid "The binary did not run correctly. Common causes: it was downloaded for the wrong CPU architecture, it lost its executable permission, or required system libraries are missing on this server."
+msgstr ""
+
+#: product-reels/product-reels.php:456
+msgid "The numeric ID of the product to link to this reel. Find it in Products → hover over a product → look for ID in the URL."
+msgstr ""
+
+#: product-reels/product-reels.php:349
+msgid "The poster image is shown before the video loads, preventing a black screen. Recommended: generate from the video or upload your own."
+msgstr ""
+
+#: product-reels/product-reels.php:915
+msgid "The uploads directory is not writable. Please check permissions on: %s"
+msgstr ""
+
+#: product-reels/product-reels.php:584
+msgid "The video file exists but PHP cannot read it (permissions issue): %s"
+msgstr ""
+
+#: product-reels/product-reels.php:1016
+msgid "Theme Integration"
+msgstr ""
+
+#: product-reels/product-reels.php:348
+msgid "Thumbnail / Poster Image"
+msgstr ""
+
+#: product-reels/product-reels.php:892
+msgid "Thumbnail and preview generation are currently disabled."
+msgstr ""
+
+#: product-reels/product-reels.php:624
+msgid "Thumbnail generated!"
+msgstr ""
+
+#: product-reels/product-reels.php:1000
+msgid "Troubleshoot FFmpeg"
+msgstr ""
+
+#: product-reels/product-reels.php:791
+msgid "Unknown error."
+msgstr ""
+
+#: product-reels/product-reels.php:1107
+msgid "Unsupported architecture."
+msgstr ""
+
+#: product-reels/product-reels.php:292
+msgid "Upload an .mp4 or .webm file directly to the Media Library. Recommended format: MP4 (H.264)."
+msgstr ""
+
+#: product-reels/product-reels.php:268
+msgid "Upload File"
+msgstr ""
+
+#: product-reels/product-reels.php:379
+msgid "Upload image"
+msgstr ""
+
+#: product-reels/product-reels.php:776
+msgid "Use this image"
+msgstr ""
+
+#: product-reels/product-reels.php:774
+msgid "Use this video"
+msgstr ""
+
+#: product-reels/product-reels.php:291
+msgid "Video File"
+msgstr ""
+
+#: product-reels/product-reels.php:578
+msgid "Video file not found. Please save the reel first."
+msgstr ""
+
+#: product-reels/product-reels.php:218
+msgid "Video Source"
+msgstr ""
+
+#: product-reels/product-reels.php:264 product-reels/product-reels.php:277
+msgid "Video URL"
+msgstr ""
+
+#: product-reels/product-reels.php:198
+msgid "View Product Reel"
+msgstr ""
+
+#: product-reels/product-reels.php:368
+msgid "Which second of the video to use as the thumbnail frame."
+msgstr ""
+
+#: product-reels/product-reels.php:1044
+msgid "WooCommerce"
+msgstr ""
+
+#: product-reels/product-reels.php:450
+msgid "WooCommerce is not active. Product linking is unavailable."
+msgstr ""
+
+#: product-reels/product-reels.php:455
+msgid "WooCommerce Product ID"
+msgstr ""
+
+#: product-reels/product-reels.php:1040
+msgid "Writable"
+msgstr ""
+
+#: product-reels/product-reels.php:1036
+msgid "Yes"
+msgstr ""
+
+#: product-reels/product-reels.php:788
+msgid "⏳ Downloading…"
+msgstr ""
+
+#: product-reels/product-reels.php:798
+msgid "⏳ Running test…"
+msgstr ""
+
+#: product-reels/product-reels.php:815
+msgid "⚠️ Product Reels: FFmpeg was not detected on this server. Thumbnail and preview generation are disabled. %s"
+msgstr ""
+
+#: product-reels/product-reels.php:792
+msgid "⬇️ Retry download"
+msgstr ""
