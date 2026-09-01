@@ -606,3 +606,7 @@ msgstr "⚠️ Product Reels: FFmpeg was not detected on this server. Thumbnail 
 #: product-reels/product-reels.php:792
 msgid "⬇️ Retry download"
 msgstr "⬇️ Tentar download novamente"
+
+#: product-reels/product-reels.php:760
+msgid "Close"
+msgstr "Fechar"

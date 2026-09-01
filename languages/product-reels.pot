@@ -604,3 +604,7 @@ msgstr ""
 #: product-reels/product-reels.php:792
 msgid "⬇️ Retry download"
 msgstr ""
+
+#: product-reels/product-reels.php:760
+msgid "Close"
+msgstr ""

@@ -122,12 +122,17 @@
     lightbox.setAttribute('aria-modal', 'true');
     lightbox.setAttribute('aria-hidden', 'true');
     const featuredReelLabel = window.ProductReelsFrontend?.featuredReelLabel || 'Featured reel';
-    lightbox.innerHTML = '<div class="reel-lightbox__backdrop" aria-hidden="true"></div><div class="reel-lightbox__stage"></div>';
+    const closeLabel = window.ProductReelsFrontend?.closeLabel || 'Close';
+    lightbox.innerHTML = '<div class="reel-lightbox__backdrop" aria-hidden="true"></div><div class="reel-lightbox__stage"><button class="reel-lightbox__close" type="button"></button></div>';
     document.body.appendChild(lightbox);
 
     const stage = lightbox.querySelector('.reel-lightbox__stage');
+    const closeButton = lightbox.querySelector('.reel-lightbox__close');
     stage.setAttribute('aria-label', featuredReelLabel);
+    closeButton.setAttribute('aria-label', closeLabel);
+    closeButton.textContent = '×';
     let activeVideo = null;
+    let previousFocus = null;
 
     const closeLightbox = () => {
       if (!activeVideo) {
@@ -143,6 +148,8 @@
       lightbox.classList.remove('is-open');
       lightbox.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = lightbox.dataset.previousBodyOverflow || '';
+      previousFocus?.focus({ preventScroll: true });
+      previousFocus = null;
     };
 
     const getFullSrc = (videoWrap) => {
@@ -162,6 +169,7 @@
       }
 
       closeLightbox();
+      previousFocus = document.activeElement;
 
       activeVideo = document.createElement('video');
       activeVideo.src = src;
@@ -169,11 +177,12 @@
       activeVideo.autoplay = true;
       activeVideo.playsInline = true;
 
-      stage.replaceChildren(activeVideo);
+      stage.appendChild(activeVideo);
       lightbox.dataset.previousBodyOverflow = document.body.style.overflow || '';
       document.body.style.overflow = 'hidden';
       lightbox.classList.add('is-open');
       lightbox.setAttribute('aria-hidden', 'false');
+      closeButton.focus({ preventScroll: true });
       activeVideo.play().catch(() => {});
     };
 
@@ -199,24 +208,40 @@
         event.stopPropagation();
         openLightbox(src);
       });
+      videoWrap.addEventListener('keydown', (event) => {
+        if (!['Enter', ' '].includes(event.key)) return;
+        event.preventDefault();
+        openLightbox(getFullSrc(videoWrap));
+      });
     });
 
     lightbox.addEventListener('click', (event) => {
-      if (event.target === lightbox || event.target.classList.contains('reel-lightbox__backdrop')) {
+      if (event.target === lightbox || event.target.classList.contains('reel-lightbox__backdrop') || event.target.closest('.reel-lightbox__close')) {
         closeLightbox();
       }
     });
 
     document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') {
+      if (event.key === 'Escape' && lightbox.classList.contains('is-open')) {
+        event.preventDefault();
         closeLightbox();
+      } else if (event.key === 'Tab' && lightbox.classList.contains('is-open')) {
+        const focusable = [closeButton, activeVideo].filter(Boolean);
+        const index = focusable.indexOf(document.activeElement);
+        if (focusable.length) {
+          event.preventDefault();
+          focusable[(index + (event.shiftKey ? -1 : 1) + focusable.length) % focusable.length].focus();
+        }
       }
     });
 
     if ('IntersectionObserver' in window) {
       const previews = Array.from(document.querySelectorAll('.reel-video__preview[src]'));
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      if (previews.length) {
+      if (reduceMotion) previews.forEach((video) => video.pause());
+
+      if (previews.length && !reduceMotion) {
         const observer = new IntersectionObserver((entries) => {
           entries.forEach((entry) => {
             const video = entry.target;
