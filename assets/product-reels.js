@@ -73,6 +73,7 @@
           return;
         }
 
+        grid.setPointerCapture?.(event.pointerId);
         isDragging = true;
         didDrag = false;
         grid.dataset.productReelsDragged = '0';

@@ -27,6 +27,8 @@
   -ms-overflow-style: none;
   flex: 1 1 auto;
   outline: none;
+  touch-action: pan-y;
+  overscroll-behavior-inline: contain;
 }
 
 :where(.reels-grid::-webkit-scrollbar) {
